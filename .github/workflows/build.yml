@@ -1,31 +1,38 @@
 name: Build
 
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
-  workflow_dispatch:
+on: [push, pull_request]
 
 jobs:
   build:
-    name: Build
     runs-on: ubuntu-latest
-    permissions: read-all
+    services:
+      mongodb:
+        image: mongo:4.4
+        ports:
+          - 27017:27017
+        options: --health-cmd "mongo --eval 'db.runCommand({ping: 1})'" --health-interval 10s --health-timeout 5s --health-retries 5
+
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v2
+      - name: Set up Node.js
+        uses: actions/setup-node@v1
         with:
-          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
-      - uses: sonarsource/sonarqube-scan-action@master
+          node-version: '14'
+      - name: Install dependencies
+        run: npm install
+      - name: Run tests
+        run: npm test
         env:
+          MONGO_URL: mongodb://localhost:27017/todos
+      - name: SonarQube Scan
+        uses: sonarsource/sonarqube-scan-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
           SONAR_ROOT_CERT: ${{ vars.SONAR_ROOT_CERT }}
-      # If you wish to fail your job when the Quality Gate is red, uncomment the
-      # following lines. This would typically be used to fail a deployment.
-      # - uses: sonarsource/sonarqube-quality-gate-action@master
-      #   timeout-minutes: 5
+      # Optional: Uncomment to fail the job when the Quality Gate is red
+      # - name: SonarQube Quality Gate Check
+      #   uses: sonarsource/sonarqube-quality-gate-action@master
       #   env:
       #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
