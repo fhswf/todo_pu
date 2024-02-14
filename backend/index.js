@@ -12,7 +12,6 @@ import jwt from 'jsonwebtoken';
 const PORT = process.env.PORT || 3000;
 
 const TOKEN_URL = "https://jupiter.fh-swf.de/keycloak/realms/webentwicklung/protocol/openid-connect/token"
-const test = 'https://jupiter.fh-swf.de/keycloak/realms/webentwicklung/protocol/openid-connect/token';
 
 const swaggerOptions = {
     swaggerDefinition: {

@@ -30,6 +30,20 @@ jobs:
         working-directory: ./backend
         env:
           MONGO_URL: mongodb://localhost:27017/todos
+          
+      # Install Frontend Dependencies
+      - name: Install frontend dependencies
+        run: npm install
+        working-directory: ./frontend
+
+      # Run Cypress Tests
+      - name: Cypress run
+        uses: cypress-io/github-action@v2
+        with:
+          start: npm start # Command to start your server, adjust if needed
+          wait-on: 'http://localhost:3000' # Adjust if your app runs on a different port
+          working-directory: ./frontend # Specify where your frontend code is located
+          
       - name: SonarQube Scan
         uses: sonarsource/sonarqube-scan-action@master
         env:
