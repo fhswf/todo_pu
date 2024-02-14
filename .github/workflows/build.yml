@@ -40,7 +40,7 @@ jobs:
       - name: Run Cypress tests
         uses: cypress-io/github-action@v2
         with:
-          start: npm start # Command to start your local server, adjust as needed
+          start: npm run cypress:run
           wait-on: 'http://localhost:3000' # Adjust if your app runs on a different port
           working-directory: ./frontend
           
