@@ -1,7 +1,7 @@
 # Projektbericht
 
 ## Projektteilnehmer
-- Patrick Uhlke
+- Patrick Uhlke - 30181830
 ## Projektübersicht
 
 Das Ziel dieses Projektes war es, eine einfache "ToDo" Anwendung mit einer Continuous Integration (CI) Pipeline zu implementieren, die automatisierte Tests und statische Codeanalyse mit SonarQube durchführt. Die Anwendung wurde entwickelt, um es den Benutzern zu ermöglichen, ihre täglichen Aufgaben zu verwalten, mit Funktionen zum Hinzufügen, Aktualisieren und Löschen von ToDos.
