@@ -31,20 +31,18 @@ jobs:
         env:
           MONGO_URL: mongodb://localhost:27017/todos
 
-      # Install Cypress globally
-      - name: Install Cypress globally
-        run: npm install -g cypress
-
-      # Run Cypress Tests
-      - name: Cypress run
+      # Install frontend dependencies, including Cypress
+      - name: Install frontend dependencies
+        run: npm install
+        working-directory: ./frontend
+        
+      # Run Cypress tests
+      - name: Run Cypress tests
         uses: cypress-io/github-action@v2
         with:
-          # Command to start your server, adjust if necessary
-          # If your frontend is served statically, you may need to use a static server npm package
-          config-file: ../frontend/cypress.config.js
-          start: npm run start
+          start: npm start # Command to start your local server, adjust as needed
           wait-on: 'http://localhost:3000' # Adjust if your app runs on a different port
-          working-directory: ../backend # Specify where your Cypress is configured
+          working-directory: ./frontend
           
       - name: SonarQube Scan
         uses: sonarsource/sonarqube-scan-action@master
