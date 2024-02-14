@@ -39,7 +39,7 @@ jobs:
           # If your frontend is served statically, you may need to use a static server npm package
           start: npm run start
           wait-on: 'http://localhost:3000' # Adjust if your app runs on a different port
-          working-directory: ./backend # Specify where your Cypress is configured
+          working-directory: ./frontend # Specify where your Cypress is configured
           
       - name: SonarQube Scan
         uses: sonarsource/sonarqube-scan-action@master
