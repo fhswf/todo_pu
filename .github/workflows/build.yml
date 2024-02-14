@@ -31,6 +31,10 @@ jobs:
         env:
           MONGO_URL: mongodb://localhost:27017/todos
 
+      # Install Cypress globally
+      - name: Install Cypress globally
+        run: npm install -g cypress
+
       # Run Cypress Tests
       - name: Cypress run
         uses: cypress-io/github-action@v2
