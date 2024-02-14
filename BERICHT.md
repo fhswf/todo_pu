@@ -36,7 +36,7 @@ https://hopper.fh-swf.de/sonarqube/dashboard?id=fhswf_todo_pu_AY19fAZsWNlYFiIpzZ
 
 **Herausforderung:** Die Integration von Keycloak zur Verwaltung der Authentifizierung stellte eine große Hürde dar. Trotz korrekter Konfiguration schlugen Tests fehl, da die Authentifizierungstoken nicht wie erwartet generiert oder validiert wurden. Dies führte dazu, dass bestimmte Funktionen, die eine Authentifizierung erforderten, in den automatisierten Tests nicht korrekt ausgeführt werden konnten.
 
-**Lösung:** Nach mehreren Versuchen und Überprüfung der Dokumentation wurde entschieden, die Keycloak-Integration vorübergehend aus den Tests auszuschließen. Dies war eine pragmatische Entscheidung, um den Fortschritt nicht weiter zu behindern und den Fokus auf andere Aspekte der CI-Pipeline und Codequalität zu legen. Die Authentifizierungslogik wurde in den Tests durch Mocking ersetzt, um eine isolierte Überprüfung der Funktionalität ohne externe Abhängigkeiten zu ermöglichen. Zukünftige Bemühungen werden sich darauf konzentrieren, eine robuste Lösung für die Integration von Keycloak in die CI-Umgebung zu finden, möglicherweise durch eine detailliertere Fehleranalyse oder durch Konsultation mit der Keycloak-Community.
+**Lösung:** Nach mehreren Versuchen und Überprüfung der Dokumentation wurde entschieden, die Keycloak-Integration vorübergehend aus den Tests auszuschließen. Dies war eine pragmatische Entscheidung, um den Fortschritt nicht weiter zu behindern und den Fokus auf andere Aspekte der CI-Pipeline und Codequalität zu legen. Die Authentifizierungslogik wurde in den Tests durch Mocking ersetzt, um eine isolierte Überprüfung der Funktionalität ohne externe Abhängigkeiten zu ermöglichen. 
 
 ### Automatisierte Backend-Tests
 
